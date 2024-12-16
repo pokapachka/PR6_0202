@@ -28,10 +28,44 @@
                 <Label Margin="20,137,10,0" HorizontalContentAlignment="Center" Content="" VerticalAlignment="Top"/>
                 <Label Content="Enter Login" Margin="20,161,10,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="TbLogin" Height="23" Margin="18,185,10,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyUp="SetLogin" LostFocus="SetLogin"/>
-                <uc:ElementCapture x:Name="Capture" HorizontalAlignment="Center" Width="280" VerticalAlignment="Top"/>
-                <TextBox x:Name="TbPassword" VerticalAlignment="Top" Height="26" KeyUp="SetPassword"/>
-                <Label Content="Forgot your password?" Margin="10,373,0,0" VerticalAlignment="Top" Foreground="#FF573487" FontSize="20" MouseDown="RecoveryPassword" HorizontalAlignment="Left" Width="200"/>
-                <Label Content="Registration" Margin="0,373,10,0" VerticalAlignment="Top" Foreground="#FF573487" FontSize="20" MouseDown="OpenReg" HorizontalAlignment="Right" Width="62"/>
+                <uc:ElementCapture x:Name="Capture"
+    HorizontalAlignment="Center"
+    Width="280"
+    Margin="10,213,10,0"
+    Height="100"
+    VerticalAlignment="Top"/>
+
+                <Label
+    Content="Enter password:"
+    Margin="10,318,10,0"
+    VerticalAlignment="Top"/>
+
+                <PasswordBox
+    x:Name="TbPassword"
+    Margin="10,342,10,0"
+    VerticalAlignment="Top"
+    Height="26"
+    KeyUp="SetPassword"/>
+
+                <Label
+    Content="Forgot your password?"
+    Margin="10,373,0,0"
+    VerticalAlignment="Top"
+    Foreground="#FF673AB7"
+    FontSize="10"
+    MouseDown="RecoveryPassword"
+    HorizontalAlignment="Left"
+    Width="110"/>
+
+                <Label
+    Content="Registration"
+    Margin="0,373,10,0"
+    VerticalAlignment="Top"
+    Foreground="#FF673AB7"
+    FontSize="10"
+    MouseDown="OpenRegin"
+    HorizontalAlignment="Right"
+    Width="62"/>
             </Grid>
         </materialDesign:Card>
     </Grid>
