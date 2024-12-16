@@ -76,17 +76,14 @@ namespace RegIN_Osokin.Login
         {
             if (!NameUser.Content.Equals(""))
             {
-                UNameUser.Content = "";
-
+                NameUser.Content = "";
                 DoubleAnimation StartAnimation = new DoubleAnimation();
                 StartAnimation.From = 1;
                 StartAnimation.To = 0;
                 StartAnimation.Duration = TimeSpan.FromSeconds(0.6);
-
                 StartAnimation.Completed += delegate
                 {
                     IUser.Source = new BitmapImage(new Uri("pack://application:,,,/Images/ic-user.png"));
-
                     DoubleAnimation EndAnimation = new DoubleAnimation();
                     EndAnimation.From = 0;
                     EndAnimation.To = 1;
@@ -97,7 +94,6 @@ namespace RegIN_Osokin.Login
 
                 IUser.BeginAnimation(Image.OpacityProperty, StartAnimation);
             }
-
             if (TbLogin.Text.Length == 0)
             {
                 SetNotification("Login is incorrect", Brushes.Red);
@@ -136,7 +132,6 @@ namespace RegIN_Osokin.Login
                             Thread TBlockAutorization = new Thread(BlockAutorization);
                             TBlockAutorization.Start();
                         }
-
                         SendMail.SendMessage("An attempt was made to log into your account.", MainWindow.mainWindow.UserLogin.Login);
                     }
                 }
@@ -149,14 +144,12 @@ namespace RegIN_Osokin.Login
         public void BlockAutorization()
         {
             DateTime StartBlock = DateTime.Now.AddMinutes(3);
-
             Dispatcher.Invoke(() =>
             {
                 TbLogin.IsEnabled = false;
                 TbPassword.IsEnabled = false;
                 Capture.IsEnabled = false;
             });
-
             for (int i = 0; i < 180; i++)
             {
                 TimeSpan TimeIdle = StartBlock.Subtract(DateTime.Now);
@@ -172,10 +165,8 @@ namespace RegIN_Osokin.Login
                 {
                     SetNotification($"Reauthorization available in: {s_minutes}:{s_seconds}", Brushes.Red);
                 });
-
                 Thread.Sleep(1000);
             }
-
             Dispatcher.Invoke(() =>
             {
                 SetNotification("Hi, " + MainWindow.mainWindow.UserLogin.Name, Brushes.Black);
@@ -192,7 +183,6 @@ namespace RegIN_Osokin.Login
             if (e.Key == Key.Enter)
             {
                 MainWindow.mainWindow.UserLogin.GetUserLogin(TbLogin.Text);
-
                 if (TbPassword.Password.Length > 0)
                     SetPassword();
             }
@@ -201,7 +191,6 @@ namespace RegIN_Osokin.Login
         private void SetLogin(object sender, RoutedEventArgs e)
         {
             MainWindow.mainWindow.UserLogin.GetUserLogin(TbLogin.Text);
-
             if (TbPassword.Password.Length > 0)
                 SetPassword();
         }
@@ -214,6 +203,6 @@ namespace RegIN_Osokin.Login
             MainWindow.mainWindow.OpenPage(new RecoveryPassword());
 
         private void OpenRegin(object sender, MouseButtonEventArgs e) =>
-            MainWindow.mainWindow.OpenPage(new Regin());
+            MainWindow.mainWindow.OpenPage(new Pages.Recovery());
     }
 }

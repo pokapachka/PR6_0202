@@ -26,13 +26,13 @@
             Width="308">
             <Grid>
                 <Image
-                    x:Name="Uiser"
+                    x:Name="IUser"
                     HorizontalAlignment="Center"
                     Height="180"
                     Margin="32"
                     VerticalAlignment="Top"
                     Width="180"
-                    Source="/RegIM;component/images/1c-user.png">
+                    Source="/RegIN;component/images/ic-user.png">
                     <Image.Clip>
                         <EllipseGeometry
                             RadiusX="50"
@@ -41,7 +41,7 @@
                     </Image.Clip>
                 </Image>
                 <Label
-                    x:Name="Ukameliser"
+                    x:Name="LNameUser"
                     Margin="10,137,10,0"
                     HorizontalContentAlignment="Center"
                     Content=""
@@ -51,7 +51,7 @@
                     Margin="10,161,10,0"
                     VerticalAlignment="Top"/>
                 <TextBox
-                    x:Name="Tilogin"
+                    x:Name="TbLogin"
                     Height="23"
                     Margin="10,185,10,0"
                     TextWrapping="Wrap"
