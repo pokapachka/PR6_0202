@@ -153,6 +153,7 @@ namespace RegIN_Osokin.Pages
         private void OpenLogin(object sender, MouseButtonEventArgs e)
         {
             MainWindow.mainWindow.OpenPage(new Pages.Login());
+
         }
     }
 }
