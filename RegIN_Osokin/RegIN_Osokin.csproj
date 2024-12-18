@@ -122,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\Confirmation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +143,9 @@
     <Compile Include="Classes\WorkingDB.cs" />
     <Compile Include="Elements\ElementCapture.xaml.cs">
       <DependentUpon>ElementCapture.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Confirmation.xaml.cs">
+      <DependentUpon>Confirmation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -182,7 +189,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\mail.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\ic-user.png" />
   </ItemGroup>
