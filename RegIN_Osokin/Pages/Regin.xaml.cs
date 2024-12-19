@@ -131,7 +131,7 @@ namespace RegIN_Osokin.Pages
                             NewHeight = (int)(image.Height * (256f / image.Width));
                         }
                         image.Resize(NewWidth, NewHeight);
-                        image.Save("IUser.jpg");
+                        image.Save("ic-user.png");
                     }
                     using (Imaging.RasterImage rasterImage = (Imaging.RasterImage)Imaging.Image.Load("ic-user.png"))
                     {
@@ -141,7 +141,7 @@ namespace RegIN_Osokin.Pages
                         else Y = (int)((rasterImage.Height - 256f) / 2);
                         Imaging.Rectangle rectangle = new Imaging.Rectangle(X, Y, Width, Height);
                         rasterImage.Crop(rectangle);
-                        rasterImage.Save("IUser.jpg");
+                        rasterImage.Save("ic-user.png");
                     }
                     DoubleAnimation StartAnimation = new DoubleAnimation();
                     StartAnimation.From = 1;
@@ -149,7 +149,7 @@ namespace RegIN_Osokin.Pages
                     StartAnimation.Duration = TimeSpan.FromSeconds(0.6);
                     StartAnimation.Completed += delegate
                     {
-                        IUser.Source = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + @"\IUser.jpg"));
+                        IUser.Source = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + @"\ic-user.png"));
                         DoubleAnimation EndAnimation = new DoubleAnimation();
                         EndAnimation.From = 0;
                         EndAnimation.To = 1;
