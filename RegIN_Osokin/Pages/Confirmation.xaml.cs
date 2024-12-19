@@ -27,7 +27,7 @@ namespace RegIN_Osokin.Pages
         }
         TypeConfirmation ThisTypeConfirmation;
         public int Code = 0;
-        public Confirmation()
+        public Confirmation(TypeConfirmation TypeConfirmation)
         {
             InitializeComponent();
             ThisTypeConfirmation = TypeConfirmation;
@@ -36,7 +36,7 @@ namespace RegIN_Osokin.Pages
         public void SendMailCode()
         {
             Code = new Random().Next(100000, 999999);
-            Classes.SendMail.SendMessage($"Login code: {Code}", MainWindow.mainWindow.UserLogIn.Login);
+            Classes.SendMail.SendMessage($"Login code: {Code}", MainWindow.mainWindow.UserLogin.Login);
             TimerSendMailCode();
         }
         public async void TimerSendMailCode()
@@ -71,7 +71,7 @@ namespace RegIN_Osokin.Pages
 
                 if (ThisTypeConfirmation == TypeConfirmation.Regin)
                 {
-                    MainWindow.mainWindow.UserLogIn.SetUser();
+                    MainWindow.mainWindow.UserLogin.SetUser();
                 }
                 else
                 {

@@ -16,10 +16,10 @@ namespace RegIN_Osokin.Classes
             var smtpClient = new SmtpClient("smtp.yandex.ru")
             {
                 Port = 587,
-                Credentials = new NetworkCredential("yandex@yandex.ru", "password"),
+                Credentials = new NetworkCredential("pachkaosokin@yandex.ru", "eusrqtznvvknymkw"),
                 EnableSsl = true,
             };
-            smtpClient.Send("landaxer@yandex.ru", To, "Проект RegIn", Message);
+            smtpClient.Send("pachkaosokin@yandex.ru", To, "Проект RegIn", Message);
         }
     }
 }

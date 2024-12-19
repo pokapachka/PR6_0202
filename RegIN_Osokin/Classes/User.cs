@@ -16,6 +16,8 @@ namespace RegIN_Osokin.Classes
         public byte[] Image { get; set; }
         public DateTime DateUpdate { get; set; }
         public DateTime DateCreate { get; set; }
+        public string PinCode { get; set; }
+
         public CorrectLogin HandlerCorrectLogin;
         public InCorrectLogin HandlerInCorrectLogin;
         public delegate void CorrectLogin();
@@ -27,6 +29,7 @@ namespace RegIN_Osokin.Classes
             this.Password = String.Empty;
             this.Name = String.Empty;
             this.Image = new byte[0];
+            this.PinCode = String.Empty;
             MySqlConnection mySqlConnection = WorkingDB.OpenConnection();
             if (WorkingDB.OpenConnection(mySqlConnection))
             {
@@ -45,6 +48,14 @@ namespace RegIN_Osokin.Classes
                     }
                     this.DateUpdate = userQuery.GetDateTime(5);
                     this.DateCreate = userQuery.GetDateTime(6);
+                    if (!userQuery.IsDBNull(7))
+                    {
+                        this.PinCode = userQuery.GetString(7);
+                    }
+                    else
+                    {
+                        this.PinCode = String.Empty;
+                    }
                     HandlerCorrectLogin.Invoke();
                 }
                 else
@@ -63,13 +74,14 @@ namespace RegIN_Osokin.Classes
             MySqlConnection mySqlConnection = WorkingDB.OpenConnection();
             if (WorkingDB.OpenConnection(mySqlConnection))
             {
-                MySqlCommand mySqlCommand = new MySqlCommand($"Insert into 'users'('Login', 'Password', 'Name', 'Image', 'DateUpdate', 'DateCreate',) values (@Login, @Password, @Name, @Image, @DateUpdate, @DateCreate)", mySqlConnection);
+                MySqlCommand mySqlCommand = new MySqlCommand($"Insert into 'users'('Login', 'Password', 'Name', 'Image', 'DateUpdate', 'DateCreate',) values (@Login, @Password, @Name, @Image, @DateUpdate, @DateCreate, @PinCode)", mySqlConnection);
                 mySqlCommand.Parameters.AddWithValue("@Login", this.Login);
                 mySqlCommand.Parameters.AddWithValue("@Password", this.Password);
                 mySqlCommand.Parameters.AddWithValue("@Name", this.Name);
                 mySqlCommand.Parameters.AddWithValue("@Image", this.Image);
                 mySqlCommand.Parameters.AddWithValue("@DateUpdate", this.DateUpdate);
                 mySqlCommand.Parameters.AddWithValue("@DateCreate", this.DateCreate);
+                mySqlCommand.Parameters.AddWithValue("@PinCode", this.PinCode);
                 mySqlCommand.ExecuteNonQuery();
             }
             WorkingDB.CloseConnection(mySqlConnection);
@@ -87,6 +99,18 @@ namespace RegIN_Osokin.Classes
                 WorkingDB.CloseConnection(mySqlConnection);
                 SendMail.SendMessage($"Your account password has been changed.\nNew password: {this.Password}", this.Login);
             }
+        }
+        public void GetPinCode(string pinCode)
+        {
+            MySqlConnection mySqlConnection = WorkingDB.OpenConnection();
+            if (WorkingDB.OpenConnection(mySqlConnection))
+            {
+                MySqlCommand mySqlCommand = new MySqlCommand($"UPDATE `users` SET `PinCode` = '{pinCode}' WHERE `Login` = @Login", mySqlConnection);
+                mySqlCommand.Parameters.AddWithValue("@PinCode", this.PinCode);
+                mySqlCommand.Parameters.AddWithValue("@Login", this.Login);
+                mySqlCommand.ExecuteNonQuery();
+            }
+            WorkingDB.CloseConnection(mySqlConnection);
         }
         public string GeneratePass()
         {
@@ -113,7 +137,9 @@ namespace RegIN_Osokin.Classes
             }
             string NPassword = "";
             for (int i = 0; i < NewPassword.Count; i++)
+            {
                 NPassword += NewPassword[i];
+            }
             return NPassword;
         }
     }

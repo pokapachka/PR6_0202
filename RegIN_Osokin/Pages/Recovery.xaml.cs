@@ -1,21 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using RegIN_Osokin.Login;
 
 namespace RegIN_Osokin.Pages
 {
@@ -133,7 +124,7 @@ namespace RegIN_Osokin.Pages
 
                     StartAnimation.Completed += delegate
                     {
-                        IUser.Source = new BitmapImage(new Uri("pack://application:,,,/Images/ic-mail.png"));
+                        IUser.Source = new BitmapImage(new Uri("pack://application:,,,/Images/mail.png"));
 
                         DoubleAnimation EndAnimation = new DoubleAnimation();
                         EndAnimation.From = 0;
@@ -149,7 +140,11 @@ namespace RegIN_Osokin.Pages
                 }
             }
         }
-
+        public void SetNotification(string Message, SolidColorBrush _Color)
+        {
+            LNameUser.Content = Message;
+            LNameUser.Foreground = _Color;
+        }
         private void OpenLogin(object sender, MouseButtonEventArgs e)
         {
             MainWindow.mainWindow.OpenPage(new Pages.Login());
